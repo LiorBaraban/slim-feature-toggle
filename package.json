@@ -1,6 +1,6 @@
 {
   "name": "slim-feature-toggle",
-  "version": "1.0.1-b.0",
+  "version": "1.0.1-b.1",
   "description": "Slim Feature / Version Toggle for Javascript Based Applications",
   "main": "index.js",
   "scripts": {
