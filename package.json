@@ -4,7 +4,13 @@
   "description": "Slim Feature / Version Toggle for Javascript Based Applications",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bump-alpha": "npm version prerelease --preid=a",
+    "bump-beta": "npm version prerelease --preid=b",
+    "bump-rc": "npm version prerelease --preid=rc",
+    "bump-patch": "npm version patch",
+    "bump-minor": "npm version minor",
+    "bump-major": "npm version major"
   },
   "author": "",
   "license": "ISC"
