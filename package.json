@@ -4,7 +4,7 @@
   "description": "Slim Feature / Version Toggle for Javascript Based Applications",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "bump-alpha": "npm version prerelease --preid=a",
     "bump-beta": "npm version prerelease --preid=b",
     "bump-rc": "npm version prerelease --preid=rc",
@@ -13,5 +13,9 @@
     "bump-major": "npm version major"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^26.6.3"
+  }
 }
