@@ -1,5 +1,17 @@
+const mockGetPackageJson = (versionToggleModule, fakeAppVersion) => jest.spyOn(versionToggleModule, 'getPackageJsonVersion').mockImplementation(() => fakeAppVersion);
 
 describe('version-toggle', () => {
+
+  describe('getPackageJsonVersion', () => {
+    it('should return a semantic version', () => {
+      const versionToggleModule = require('../lib/version-toggle');
+      const spyGetPackageJson = mockGetPackageJson(versionToggleModule,'1.2.3');
+
+      const mockPackageJsonVersion = versionToggleModule.getPackageJsonVersion();
+
+      expect(mockPackageJsonVersion).toContain('1.2.3');
+    })
+  })
 
   describe('splitAppVersion', () => {
 
@@ -37,6 +49,13 @@ describe('version-toggle', () => {
 
   })
 
-  describe('')
+  describe('isAppVersionEqualTo', () => {
+    it('should return true when app version is equal to input version', () => {
+      const versionToggleModule = require('../lib/version-toggle');
+      const spyGetPackageJson = mockGetPackageJson(versionToggleModule);
+
+
+    });
+  })
 
 });
