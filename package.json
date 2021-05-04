@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "bump-alpha": "npm version prerelease --preid=a",
-    "bump-beta": "npm version prerelease --preid=b",
-    "bump-rc": "npm version prerelease --preid=rc",
-    "bump-patch": "npm version patch",
-    "bump-minor": "npm version minor",
-    "bump-major": "npm version major"
+    "version-bump-alpha": "npm version prerelease --preid=a",
+    "version-bump-beta": "npm version prerelease --preid=b",
+    "version-bump-rc": "npm version prerelease --preid=rc",
+    "version-bump-patch": "npm version patch",
+    "version-bump-minor": "npm version minor",
+    "version-bump-major": "npm version major"
   },
   "author": "",
   "license": "ISC",
