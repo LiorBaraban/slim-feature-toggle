@@ -4,6 +4,7 @@
   "description": "Slim Feature / Version Toggle for Javascript Based Applications",
   "main": "index.js",
   "scripts": {
+    "start": "node playground.js",
     "test": "jest --watch",
     "version-bump-alpha": "npm version prerelease --preid=a",
     "version-bump-beta": "npm version prerelease --preid=b",
