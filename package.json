@@ -4,7 +4,7 @@
   "description": "Slim Feature / Version Toggle for Javascript Based Applications",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "version-bump-alpha": "npm version prerelease --preid=a",
     "version-bump-beta": "npm version prerelease --preid=b",
     "version-bump-rc": "npm version prerelease --preid=rc",

@@ -1,19 +1,39 @@
-const mockGetPackageJson = (versionToggleModule, fakeAppVersion) => jest.spyOn(versionToggleModule, 'getPackageJsonVersion').mockImplementation(() => fakeAppVersion);
+const mockGetAppVersion = (versionToggleModule, fakeAppVersion) => jest.spyOn(versionToggleModule, 'getAppVersion').mockImplementation(() => fakeAppVersion);
+const { APP_VERSION_IS } = require('../lib/app-version-is');
+
 
 describe('version-toggle', () => {
 
-  // test broke - need new ones for setAppVersion, getAppVersion, logAppVersion
-  
-  // describe('getPackageJsonVersion', () => {
-  //   it('should return a semantic version', () => {
-  //     const versionToggleModule = require('../lib/version-toggle');
-  //     const spyGetPackageJson = mockGetPackageJson(versionToggleModule,'1.2.3');
+  beforeEach(() => {
+    jest.resetModules();
+  })
 
-  //     const mockPackageJsonVersion = versionToggleModule.getPackageJsonVersion();
+  describe('getAppVersion', () => {
+    it('should return a semantic version if appVersion was set', () => {
+      const versionToggleModule = require('../lib/version-toggle');
+      versionToggleModule.setAppVersion('1.2.3');
+      expect(versionToggleModule.getAppVersion()).toContain('1.2.3');
+    })
 
-  //     expect(mockPackageJsonVersion).toContain('1.2.3');
-  //   })
-  // })
+    it('should throw if appVersion was not set', () => {
+      const versionToggleModule = require('../lib/version-toggle');
+      const { getAppVersion } = versionToggleModule;
+      // forgot to setAppVersion('1.0.0') on purpose
+
+      expect(() => {
+        getAppVersion()
+      }).toThrowError();
+    })
+  })
+
+  describe('logAppVersion', () => {
+    const versionToggleModule = require('../lib/version-toggle');
+    versionToggleModule.setAppVersion('1.2.3');
+    jest.spyOn(console, 'log');
+
+    versionToggleModule.logAppVersion();
+    expect(console.log).toHaveBeenCalled();
+  })
 
   describe('splitAppVersion', () => {
 
@@ -52,12 +72,81 @@ describe('version-toggle', () => {
   })
 
   describe('isAppVersionEqualTo', () => {
-    it('should return true when app version is equal to input version', () => {
+    it('should return true when appVersion is equal to inputVersion', () => {
       const versionToggleModule = require('../lib/version-toggle');
-      const spyGetPackageJson = mockGetPackageJson(versionToggleModule);
+      const { setAppVersion, isAppVersionEqualTo } = versionToggleModule;
+      setAppVersion('1.2.3');
 
+      const isEqual = isAppVersionEqualTo('1.2.3');
+      expect(isEqual).toBeTruthy();
+    });
+
+    it('should return false when appVersion is NOT equal to inputVersion', () => {
+      const versionToggleModule = require('../lib/version-toggle');
+      const { setAppVersion, isAppVersionEqualTo } = versionToggleModule;
+      setAppVersion('1.2.3');
+
+      const isEqual = isAppVersionEqualTo('4.5.6');
+      expect(isEqual).toBeFalsy();
+    });
+
+    it('should throw if appVersion is not set', () => {
+      const versionToggleModule = require('../lib/version-toggle');
+      const { isAppVersionEqualTo } = versionToggleModule;
+      // forgot to setAppVersion('1.2.3') on purpose... 
+
+      expect(() => {
+        isAppVersionEqualTo('1.2.3')
+      }).toThrow();
 
     });
+  });
+
+  describe('isAppVersionGreaterThan', () => {
+    it('should return true when appVersion is greater than inputVersion', () => {
+      const { setAppVersion, isAppVersionGreaterThan } = require('../lib/version-toggle');
+      setAppVersion('1.2.3');
+
+      expect(isAppVersionGreaterThan('1.0.0')).toBeTruthy();
+      expect(isAppVersionGreaterThan('1.1.1')).toBeTruthy();
+      expect(isAppVersionGreaterThan('1.2.2')).toBeTruthy();
+    });
+
+    it('should return false when appVersion is equal to inputVersion', () => {
+      const { setAppVersion, isAppVersionGreaterThan } = require('../lib/version-toggle');
+      setAppVersion('1.2.3');
+
+      expect(isAppVersionGreaterThan('1.2.3')).toBeFalsy();
+    });
+
+    it('should return false when appVersion is lesser than inputVersion', () => {
+      const { setAppVersion, isAppVersionGreaterThan } = require('../lib/version-toggle');
+      setAppVersion('1.2.3');
+
+      expect(isAppVersionGreaterThan('1.2.4')).toBeFalsy();
+      expect(isAppVersionGreaterThan('1.3.4')).toBeFalsy();
+      expect(isAppVersionGreaterThan('4.5.6')).toBeFalsy();
+    });
+
+    it('should throw if appVersion is not set', () => {
+      const { isAppVersionGreaterThan } = require('../lib/version-toggle');
+      // forgot to setAppVersion('1.2.3') on purpose
+
+      expect(() => {
+        isAppVersionGreaterThan('4.5.6')
+      }).toThrow();
+    })
+
+    it('should throw if inputVersion is not set', () => {
+      const { setAppVersion, isAppVersionGreaterThan } = require('../lib/version-toggle');
+      setAppVersion('1.2.3');
+
+      expect(() => {
+        isAppVersionGreaterThan(undefined)
+      }).toThrow();
+    })
   })
+
+  
 
 });
