@@ -12,7 +12,15 @@
     "version-bump-minor": "npm version minor",
     "version-bump-major": "npm version major"
   },
-  "author": "",
+  "author": "Lior Baraban",
+  "keywords": [
+    "feature",
+    "toggle",
+    "version",
+    "agnostic",
+    "simple",
+    "slim"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.23",
