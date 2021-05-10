@@ -29,7 +29,7 @@ featureToggle.setAppFeatures([PUPPIES, KITTEN, BABIES]);
 featureToggle.setEnabledAppFeatures([PUPPIES]);
 
 // Thats it.
-// Now we can use slim-feature-toggle to control the application's flow based on those settings:
+// We can now control the application's flow based on those settings:
 
 
 
@@ -48,7 +48,7 @@ if (isFeatureEnabled(PUPPIES)) {
 
 
 // =============================================================================
-// featureToggleRunCallback - execute a callback only if the feature is enabled
+// featureToggleRunCallback - Execute a callback only if the feature is enabled
 // =============================================================================
 const { featureToggle } = require('slim-feature-toggle');
 const { featureToggleRunCallback } = featureToggle;
@@ -63,14 +63,15 @@ featureToggleRunCallback(KITTEN, () => {
 
 
 
-// =======================================================================================
-// featureToggleRunPromise - resolve a promise if the feature is enabled, otherwise reject
-// =======================================================================================
+// ======================================================================
+// featureToggleRunPromise - Resolve a promise if the feature is enabled, 
+//                           Otherwise reject
+// ======================================================================
 const { featureToggle } = require('slim-feature-toggle');
 const { featureToggleRunPromise } = featureToggle;
 
 featureToggleRunPromise(BABIES)
-  .then(() => console.log('this then block would run only if BABIES feature is enabled'))
-  .catch(() => console.log('this catch block would run only if BABIES feature is disabled'));
+  .then(() => console.log('resolves only if BABIES feature is enabled'))
+  .catch(() => console.log('rejects if BABIES feature is disabled'));
 
 ```
