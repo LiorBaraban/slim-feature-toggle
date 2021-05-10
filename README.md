@@ -15,7 +15,9 @@ const BABIES = 'BABIES';
 ```
 
 To set up the configuration needed, 
-import the featureToggle module at Application Start.
+
+import the featureToggle module at Application Start
+
 and set the follwing configurations:
   - The full feature-set of the application
   - The subset feature-set of which we want to enable
@@ -32,8 +34,11 @@ featureToggle.setEnabledAppFeatures([PUPPIES]);
 ```
 
 After setting the configuration we are good to go.
+
 We can now control the flow of our application.
+
 Simply import the featureToggle module into your code
+
 and use one of the following methods:
 
 
