@@ -16,18 +16,13 @@ const BABIES = 'BABIES';
 
 To set up the configuration needed, 
 
-import the featureToggle module at Application Start
-
-and set the follwing configurations:
-  - The full feature-set of the application
-  - The subset feature-set of which we want to enable
+import the featureToggle module at Application Start and set:
+* The full feature-set of the application
+* The subset feature-set of which we want to enable
 
 ```js
-// At the moment,
-// we at CuteCorp. decided to enable the 'Puppies' feature only:
-
-
 // App.js / index.js / server.js / main.js:
+// for now, we at CuteCorp. decided to enable the 'Puppies' feature only:
 const { featureToggle } = require('slim-feature-toggle');
 featureToggle.setAppFeatures([PUPPIES, KITTEN, BABIES]); 
 featureToggle.setEnabledAppFeatures([PUPPIES]);
@@ -35,13 +30,7 @@ featureToggle.setEnabledAppFeatures([PUPPIES]);
 
 After setting the configuration we are good to go.
 
-We can now control the flow of our application.
-
-Simply import the featureToggle module into your code
-
-and use one of the following methods:
-
-
+Simply import the featureToggle module into your code and control the application flow using one of the following methods:
 
 ```js
 // =========================================
