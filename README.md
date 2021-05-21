@@ -30,6 +30,7 @@ To set up the configuration needed,
 import the featureToggle module at Application Start and set the app's features:
 
 ```js
+// inside App.js / index.js / server.js / main.js:
 const { featureToggle } = require('slim-feature-toggle');
 featureToggle.setAppFeatures(appFeatures); 
 ```
