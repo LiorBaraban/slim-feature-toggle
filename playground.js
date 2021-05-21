@@ -46,12 +46,12 @@ const { isFeatureEnabled } = featureToggle;
 
 
 
-const featureChain = ['PUPPIES.POODLES', 'BABIES']
-if (isFeatureEnabled(featureChain)) {
-  console.log(`${featureChain} chain is enabled `)
+const featureSet = ['PUPPIES.POODLES', 'BABIES']
+if (isFeatureEnabled(featureSet)) {
+  console.log(`${featureSet} chain is enabled `)
   // we should probably render the PuppyList component here...
 } else {
-  console.log(`${featureChain} chain is disabled `);
+  console.log(`${featureSet} chain is disabled `);
   // perhaps we should engage an offer for a free monthly puppy subscription!
 }
 

@@ -8,24 +8,32 @@ The following example will guide you through it
 
 ```js
 // Welcome to CuteCorp. 
-// These are the cute Features we develop in our app
-const PUPPIES = 'PUPPIES';
-const KITTEN = 'KITTEN';
-const BABIES = 'BABIES';
+// These are the cute Features and Sub-Features we develop in our app
+// We use the 'enabled' property to set each feature's availability
+const appFeatures = {
+  PUPPIES: {
+    enabled: true,
+    POODLES: {
+      enabled: true
+    },
+    LABRADORS: {
+      enabled: false
+    }
+  },
+  KITTEN: { enabled: true },
+  BABIES: { enabled: true }
+};
 ```
 
 To set up the configuration needed, 
 
 import the featureToggle module at Application Start and set:
-* The full feature-set of the application
-* The subset feature-set of which we want to enable
 
 ```js
 // App.js / index.js / server.js / main.js:
 // for now, we at CuteCorp. decided to enable the 'Puppies' feature only:
 const { featureToggle } = require('slim-feature-toggle');
-featureToggle.setAppFeatures([PUPPIES, KITTEN, BABIES]); 
-featureToggle.setEnabledAppFeatures([PUPPIES]);
+featureToggle.setAppFeatures(appFeatures); 
 ```
 
 After setting the configuration we are good to go.
@@ -39,10 +47,20 @@ Simply import the featureToggle module into your code and control the applicatio
 const { featureToggle } = require('slim-feature-toggle');
 const { isFeatureEnabled } = featureToggle;
 
-if (isFeatureEnabled(PUPPIES)) {
+if (isFeatureEnabled('PUPPIES')) {
   console.log(`TODO - Render the PuppyList component here ... `)
 } else {
   console.log(`TODO - Engage a free monthly puppy subscription offer here ...`);
+}
+
+// feature set arrays are also supported:
+if (isFeatureEnabled(['KITTEN', 'BABIES'])) {
+  console.log(`Do stuff if both KITTEN and BABIES are enabled`);
+}
+
+// nested features traversal are also supported using . notation:
+if (isFeatureEnabled('PUPPIES.POODLES')) {
+  console.log(`log this message if both PUPPIES feature and its POODLES sub-feature are enabled`);
 }
 
 
@@ -53,7 +71,7 @@ if (isFeatureEnabled(PUPPIES)) {
 const { featureToggle } = require('slim-feature-toggle');
 const { featureToggleRunCallback } = featureToggle;
 
-featureToggleRunCallback(KITTEN, () => {
+featureToggleRunCallback('KITTEN', () => {
   // Execute some super cute kitty logic here ....
 
   // NOTE - this callback will execute only if the KITTEN feature is enabled,
@@ -70,7 +88,7 @@ featureToggleRunCallback(KITTEN, () => {
 const { featureToggle } = require('slim-feature-toggle');
 const { featureToggleRunPromise } = featureToggle;
 
-featureToggleRunPromise(BABIES)
+featureToggleRunPromise('BABIES')
   .then(() => console.log('resolves only if BABIES feature is enabled'))
   .catch(() => console.log('rejects if BABIES feature is disabled'));
 
