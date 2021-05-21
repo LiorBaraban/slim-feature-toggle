@@ -27,11 +27,9 @@ const appFeatures = {
 
 To set up the configuration needed, 
 
-import the featureToggle module at Application Start and set:
+import the featureToggle module at Application Start and set the app's features:
 
 ```js
-// App.js / index.js / server.js / main.js:
-// for now, we at CuteCorp. decided to enable the 'Puppies' feature only:
 const { featureToggle } = require('slim-feature-toggle');
 featureToggle.setAppFeatures(appFeatures); 
 ```
