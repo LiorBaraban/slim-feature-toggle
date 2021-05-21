@@ -58,7 +58,7 @@ if (isFeatureEnabled(['KITTEN', 'BABIES'])) {
 
 // nested features traversal are also supported using . notation:
 if (isFeatureEnabled('PUPPIES.POODLES')) {
-  console.log(`log this message if both PUPPIES feature and its POODLES sub-feature are enabled`);
+  console.log(`Run if both PUPPIES feature and POODLES sub-feature are enabled`);
 }
 
 
